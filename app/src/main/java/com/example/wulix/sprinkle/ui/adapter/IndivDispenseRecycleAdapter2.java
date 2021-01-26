@@ -18,6 +18,16 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
 
     private List<DataDispenser> dataDispensers;
 
+    private OnItemClickListener mOnItemClickListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    public IndivDispenseRecycleAdapter2(List<DataDispenser> dataDispensers) {
+        this.dataDispensers = dataDispensers;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,18 +37,28 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.dispenserNumber.setText(dataDispensers.get(position).getDispenserNumberString());
         holder.spiceName.setText(dataDispensers.get(position).getSpiceName());
         holder.teaspoonNumb.setText(dataDispensers.get(position).getTeaspoonNumbString());
 
-
+        if(mOnItemClickListener != null){
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$");
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getLayoutPosition(); // 1
+                    System.out.println("position ######### "+ position);
+                    //  mOnItemClickListener1.onItemClick1(holder.itemView,position); // 2
+                }
+            });
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataDispensers.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
