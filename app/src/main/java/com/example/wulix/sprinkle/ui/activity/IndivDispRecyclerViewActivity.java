@@ -4,5 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class IndivDispRecyclerViewActivity extends AppCompatActivity {
 
+    int q;
+
 
 }
