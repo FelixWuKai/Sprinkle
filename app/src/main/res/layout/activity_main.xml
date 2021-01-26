@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tabs"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="0dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        app:tabMode="fixed">
+
+        <com.google.android.material.tabs.TabItem
+        android:id="@+id/tab_sett"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="setting"/>
+        <com.google.android.material.tabs.TabItem
+        android:id="@+id/tab_disp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="dispense"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_mang"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="manage"
+            android:visibility="visible" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+</RelativeLayout>
