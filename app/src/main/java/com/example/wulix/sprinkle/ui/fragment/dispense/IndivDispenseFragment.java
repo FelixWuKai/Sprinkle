@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 public class IndivDispenseFragment extends BaseFragment {
 
     private List<DataDispenser> dataDispensers;
+    private View view;
 
     private RecyclerView.LayoutManager layoutManager;
     private IndivDispenseRecycleAdapter2 indivDispenseRecycleAdapter2;
@@ -45,7 +46,8 @@ public class IndivDispenseFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_indiv_dispense, container, false);
+        super.onCreate(savedInstanceState);
+        view = inflater.inflate(R.layout.fragment_indiv_dispense, container, false);
         ButterKnife.bind(this, view);
         initData();
         initRecyclerView();
@@ -69,26 +71,31 @@ public class IndivDispenseFragment extends BaseFragment {
         dataDispensers.add(dispenser3);
         dataDispensers.add(dispenser4);
         dataDispensers.add(dispenser5);
+//        System.out.println("initData");
+//        for (int i = 0; i<5; i++){
+//            System.out.println(dataDispensers.get(i).generalGetter());
+//        }
 
 
     }
 
     private void initRecyclerView() {
-        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(getActivity());
+        dispRecyView.setLayoutManager(layoutManager);
         dispRecyView.addOnItemTouchListener(new IndivDispRecyclerViewListener(getContext(), dispRecyView, new IndivDispRecyclerViewListener.OnItem_IndivDisp_ClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(),"Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                Toast.makeText(getContext(),"Long Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Long Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
             }
         }));
 
         indivDispenseRecycleAdapter2 = new IndivDispenseRecycleAdapter2(dataDispensers);
-        dispRecyView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+        dispRecyView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         dispRecyView.setAdapter(indivDispenseRecycleAdapter2);
 
 

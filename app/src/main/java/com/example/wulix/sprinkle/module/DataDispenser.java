@@ -16,6 +16,8 @@ public class DataDispenser {
         return dispenserNumber;
     }
 
+
+
     public String getDispenserNumberString(){
         return String.valueOf(dispenserNumber);
     }
@@ -42,5 +44,9 @@ public class DataDispenser {
 
     public void setTeaspoonNumb(double teaspoonNumb) {
         this.teaspoonNumb = teaspoonNumb;
+    }
+
+    public String generalGetter(){
+        return "Dispenser Number: " + getDispenserNumberString() + " Tea Spoons "+getTeaspoonNumbString()+" Spice Name" +getSpiceName();
     }
 }
