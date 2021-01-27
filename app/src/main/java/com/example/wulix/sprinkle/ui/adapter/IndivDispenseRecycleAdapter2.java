@@ -49,6 +49,8 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         this.onRecyclerViewItemClickListener = listener;
     }
 
+    //为RecyclerView的每一个子Item设置setOnClickListener
+    //这一点在Adapter中设置
     public void setOnItemClickListenerTest(OnRecyclerViewItemClickListenerTest listenerTest){
         this.onRecyclerViewItemClickListenerTest = listenerTest;
     }
@@ -57,6 +59,9 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         VIEW_IMAGE
     }
 
+    //在OnCick中调用一下对外封装的接口，在这里就是onItemClick，
+    //也就OnRecyclerViewItemClickListenerTest接口里面的一个方法
+    //不在这里处理OnClick事件，而是由调用它的地方来处理，是为了保护代码的一致性
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
