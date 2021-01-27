@@ -3,8 +3,10 @@ package com.example.wulix.sprinkle.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wulix.sprinkle.R;
 import com.example.wulix.sprinkle.module.DataDispenser;
@@ -16,7 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
-public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDispenseRecycleAdapter2.ViewHolder> {
+public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDispenseRecycleAdapter2.ViewHolder> implements View.OnClickListener{
 
 
     @BindView(R.id.disp_img) ImageView dispImg;
@@ -29,10 +31,37 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
     private List<DataDispenser> dataDispensers;
 
     private OnItemClickListener mOnItemClickListener;
+    private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = null;
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+        this.onRecyclerViewItemClickListener = listener;
+    }
+
+    public enum ViewName{
+        VIEW_IMAGE
+    }
+
+    @Override
+    public void onClick(View v) {
+        int position = (int) v.getTag();
+        if (onRecyclerViewItemClickListener != null) {
+            switch (v.getId()){
+                case R.id.dispense_action:
+                    onRecyclerViewItemClickListener.onItemClick(v, ViewName.VIEW_IMAGE, position);
+                    break;
+                    default:
+                        break;
+            }
+        }
+
+    }
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
+    public interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view, ViewName viewName, int position);
+    }
+
 
     public IndivDispenseRecycleAdapter2(List<DataDispenser> dataDispensers) {
         this.dataDispensers = dataDispensers;
@@ -41,7 +70,7 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_indiv_dispense_edit, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_indiv_dispense_edit2, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -51,18 +80,18 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         holder.dispenserNumber.setText(dataDispensers.get(position).getDispenserNumberString());
         holder.spiceName.setText(dataDispensers.get(position).getSpiceName());
         holder.teaspoonNumb.setText(dataDispensers.get(position).getTeaspoonNumbString());
-
-        if (mOnItemClickListener != null) {
-            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$");
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = holder.getLayoutPosition(); // 1
-                    System.out.println("position ######### " + position);
-                    //  mOnItemClickListener1.onItemClick1(holder.itemView,position); // 2
-                }
-            });
-        }
+        holder.dispenseAction.setTag(position);
+//        if (mOnItemClickListener != null) {
+//            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$");
+//            holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position = holder.getLayoutPosition(); // 1
+//                    System.out.println("position ######### " + position);
+//                    //  mOnItemClickListener1.onItemClick1(holder.itemView,position); // 2
+//                }
+//            });
+//        }
 
     }
 
@@ -76,6 +105,7 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         public TextView dispenserNumber;
         public TextView spiceName;
         public TextView teaspoonNumb;
+        public ImageView dispenseAction;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +114,10 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
             dispenserNumber = (TextView) itemView.findViewById(R.id.dispenserNumber);
             spiceName = (TextView) itemView.findViewById(R.id.spiceName);
             teaspoonNumb = (TextView) itemView.findViewById(R.id.teasponNumb);
+            dispenseAction = (ImageView) itemView.findViewById(R.id.dispense_action);
+            dispenseAction.setOnClickListener(IndivDispenseRecycleAdapter2.this);
         }
     }
+
+
 }

@@ -82,22 +82,28 @@ public class IndivDispenseFragment extends BaseFragment {
     private void initRecyclerView() {
         layoutManager = new LinearLayoutManager(getActivity());
         dispRecyView.setLayoutManager(layoutManager);
-        dispRecyView.addOnItemTouchListener(new IndivDispRecyclerViewListener(getContext(), dispRecyView, new IndivDispRecyclerViewListener.OnItem_IndivDisp_ClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(),"Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
-            }
+//        dispRecyView.addOnItemTouchListener(new IndivDispRecyclerViewListener(getContext(), dispRecyView, new IndivDispRecyclerViewListener.OnItem_IndivDisp_ClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                Toast.makeText(getActivity(),"Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onItemLongClick(View view, int position) {
+//                Toast.makeText(getActivity(),"Long Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
+//            }
+//        }));
 
-            @Override
-            public void onItemLongClick(View view, int position) {
-                Toast.makeText(getActivity(),"Long Click "+dataDispensers.get(position),Toast.LENGTH_SHORT).show();
-            }
-        }));
 
         indivDispenseRecycleAdapter2 = new IndivDispenseRecycleAdapter2(dataDispensers);
         dispRecyView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         dispRecyView.setAdapter(indivDispenseRecycleAdapter2);
-
+        indivDispenseRecycleAdapter2.setOnItemClickListener(new IndivDispenseRecycleAdapter2.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, IndivDispenseRecycleAdapter2.ViewName viewName, int position) {
+                Toast.makeText(getContext(), "fuckkkkkkkkkkkkkkkk I started dispensing bitch ", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
