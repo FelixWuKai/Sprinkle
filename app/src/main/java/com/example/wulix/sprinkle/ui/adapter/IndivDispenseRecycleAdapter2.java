@@ -32,7 +32,7 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
 
     private OnItemClickListener mOnItemClickListener;
     private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = null;
-
+    private OnRecyclerViewItemClickListenerTest onRecyclerViewItemClickListenerTest = null;
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -41,8 +41,16 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         void onItemClick(View view, ViewName viewName, int position);
     }
 
+    public interface OnRecyclerViewItemClickListenerTest{
+        void onItemClick(View view, int position);
+    }
+
     public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
         this.onRecyclerViewItemClickListener = listener;
+    }
+
+    public void setOnItemClickListenerTest(OnRecyclerViewItemClickListenerTest listenerTest){
+        this.onRecyclerViewItemClickListenerTest = listenerTest;
     }
 
     public enum ViewName{
@@ -52,10 +60,10 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
-        if (onRecyclerViewItemClickListener != null) {
+        if (onRecyclerViewItemClickListenerTest != null) {
             switch (v.getId()){
                 case R.id.dispense_action:
-                    onRecyclerViewItemClickListener.onItemClick(v, ViewName.VIEW_IMAGE, position);
+                    onRecyclerViewItemClickListenerTest.onItemClick(v, position);
                     break;
                     default:
                         break;

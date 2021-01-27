@@ -98,11 +98,12 @@ public class IndivDispenseFragment extends BaseFragment {
         indivDispenseRecycleAdapter2 = new IndivDispenseRecycleAdapter2(dataDispensers);
         dispRecyView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         dispRecyView.setAdapter(indivDispenseRecycleAdapter2);
-        indivDispenseRecycleAdapter2.setOnItemClickListener(new IndivDispenseRecycleAdapter2.OnRecyclerViewItemClickListener() {
+        indivDispenseRecycleAdapter2.setOnItemClickListenerTest(new IndivDispenseRecycleAdapter2.OnRecyclerViewItemClickListenerTest() {
             @Override
-            public void onItemClick(View view, IndivDispenseRecycleAdapter2.ViewName viewName, int position) {
+            public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(), "fuckkkkkkkkkkkkkkkk I started dispensing bitch ", Toast.LENGTH_SHORT).show();
             }
+
         });
 
     }
