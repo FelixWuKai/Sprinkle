@@ -32,6 +32,15 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
 
     private OnItemClickListener mOnItemClickListener;
     private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = null;
+
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+    public interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view, ViewName viewName, int position);
+    }
+
     public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
         this.onRecyclerViewItemClickListener = listener;
     }
@@ -55,12 +64,7 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
 
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-    public interface OnRecyclerViewItemClickListener {
-        void onItemClick(View view, ViewName viewName, int position);
-    }
+
 
 
     public IndivDispenseRecycleAdapter2(List<DataDispenser> dataDispensers) {
