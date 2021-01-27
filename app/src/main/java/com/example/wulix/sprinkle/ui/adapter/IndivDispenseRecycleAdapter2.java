@@ -3,6 +3,7 @@ package com.example.wulix.sprinkle.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.wulix.sprinkle.R;
@@ -11,17 +12,26 @@ import com.example.wulix.sprinkle.module.DataDispenser;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 
-public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDispenseRecycleAdapter2.ViewHolder>{
+public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDispenseRecycleAdapter2.ViewHolder> {
 
+
+    @BindView(R.id.disp_img) ImageView dispImg;
+    @BindView(R.id.dispenserNumber) TextView dispenserNumber;
+    @BindView(R.id.spiceName) TextView spiceName;
+    @BindView(R.id.teasponNumb) TextView teasponNumb;
+    @BindView(R.id.dispense_action) ImageView dispenseAction;
+    @BindView(R.id.indiv_disp) CardView indivDisp;
 
     private List<DataDispenser> dataDispensers;
 
     private OnItemClickListener mOnItemClickListener;
 
-    public interface OnItemClickListener{
-        void onItemClick(View view,int position);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
     public IndivDispenseRecycleAdapter2(List<DataDispenser> dataDispensers) {
@@ -31,7 +41,7 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_indiv_dispense, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_indiv_dispense_edit, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -42,13 +52,13 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         holder.spiceName.setText(dataDispensers.get(position).getSpiceName());
         holder.teaspoonNumb.setText(dataDispensers.get(position).getTeaspoonNumbString());
 
-        if(mOnItemClickListener != null){
+        if (mOnItemClickListener != null) {
             System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$");
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition(); // 1
-                    System.out.println("position ######### "+ position);
+                    System.out.println("position ######### " + position);
                     //  mOnItemClickListener1.onItemClick1(holder.itemView,position); // 2
                 }
             });
@@ -61,11 +71,12 @@ public class IndivDispenseRecycleAdapter2 extends RecyclerView.Adapter<IndivDisp
         return dataDispensers.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-//        public TextView mTextView;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        //        public TextView mTextView;
         public TextView dispenserNumber;
         public TextView spiceName;
         public TextView teaspoonNumb;
+
         public ViewHolder(View itemView) {
             super(itemView);
             //由于itemView是item的布局文件，我们需要的是里面的textView，因此利用itemView.findViewById获

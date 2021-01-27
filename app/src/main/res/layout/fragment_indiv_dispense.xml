@@ -20,14 +20,14 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/indiv_disp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Individual Dispense"
-        app:layout_constraintStart_toStartOf="@+id/disp_recyView"
-        app:layout_constraintTop_toTopOf="@+id/disp_recyView" />
+    <!--<Button-->
+        <!--android:id="@+id/indiv_disp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Individual Dispense"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/disp_recyView"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/disp_recyView" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

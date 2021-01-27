@@ -40,7 +40,7 @@ public class IndivDispenseFragment extends BaseFragment {
 
 
 
-    @BindView(R.id.indiv_disp) Button indivDisp;
+//    @BindView(R.id.indiv_disp) Button indivDisp;
     @BindView(R.id.disp_recyView) RecyclerView dispRecyView;
 
     @Nullable
@@ -51,16 +51,16 @@ public class IndivDispenseFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         initData();
         initRecyclerView();
-        indivDisp.setOnClickListener(btnOnClickListener);
+//        indivDisp.setOnClickListener(btnOnClickListener);
         return view;
     }
 
-    View.OnClickListener btnOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getContext(), "Device is Individually Dispensing ", Toast.LENGTH_SHORT).show();
-        }
-    };
+//    View.OnClickListener btnOnClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Toast.makeText(getContext(), "Device is Individually Dispensing ", Toast.LENGTH_SHORT).show();
+//        }
+//    };
 
 
     private void initData() {
