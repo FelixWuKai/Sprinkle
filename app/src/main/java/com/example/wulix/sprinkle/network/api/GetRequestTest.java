@@ -5,10 +5,14 @@ import com.example.wulix.sprinkle.module.Translation1;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface GetRequestTest {
-    @GET("ajax.php?a=fy&f=auto&t=auto&w=hello%20world")
+
+    @POST("translate?doctype=json&jsonversion=&type=&keyfrom=&model=&mid=&imei=&vendor=&screen=&ssid=&network=&abtest=")
+    @FormUrlEncoded
     Call<Translation1> getCall(@Field("i") String targetSentence);
     // @GET注解的作用:采用Get方法发送网络请求
     // getCall() = 接收网络请求数据的方法

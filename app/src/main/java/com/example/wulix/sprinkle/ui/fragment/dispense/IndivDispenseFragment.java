@@ -38,7 +38,7 @@ public class IndivDispenseFragment extends BaseFragment {
 
     private RecyclerView.LayoutManager layoutManager;
     private IndivDispenseRecycleAdapter2 indivDispenseRecycleAdapter2;
-    String trans;
+    String trans = null;
 
     DataDispenser dispenser1 = new DataDispenser(1, "salt", 1.1);
     DataDispenser dispenser2 = new DataDispenser(2, "sugar", 1.1);
@@ -109,7 +109,7 @@ public class IndivDispenseFragment extends BaseFragment {
         indivDispenseRecycleAdapter2.setOnItemClickListenerTest(new IndivDispenseRecycleAdapter2.OnRecyclerViewItemClickListenerTest() {
             @Override
             public void onItemClick(View view, int position) {
-//                Toast.makeText(getContext(), "fuckkkkkkkkkkkkkkkk I started dispensing bitch ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "On Item Click I started dispensing bitch ", Toast.LENGTH_SHORT).show();
                 requestGet();
             }
 
