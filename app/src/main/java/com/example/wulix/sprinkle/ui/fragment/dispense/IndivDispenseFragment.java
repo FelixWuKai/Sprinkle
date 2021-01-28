@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.wulix.sprinkle.R;
 import com.example.wulix.sprinkle.module.DataDispenser;
+import com.example.wulix.sprinkle.module.Translation1;
+import com.example.wulix.sprinkle.network.api.GetRequestTest;
 import com.example.wulix.sprinkle.ui.adapter.IndivDispenseRecycleAdapter2;
 import com.example.wulix.sprinkle.ui.base.BaseFragment;
 import com.example.wulix.sprinkle.ui.listener.IndivDispRecyclerViewListener;
@@ -23,6 +25,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class IndivDispenseFragment extends BaseFragment {
 
@@ -31,6 +38,7 @@ public class IndivDispenseFragment extends BaseFragment {
 
     private RecyclerView.LayoutManager layoutManager;
     private IndivDispenseRecycleAdapter2 indivDispenseRecycleAdapter2;
+    String trans;
 
     DataDispenser dispenser1 = new DataDispenser(1, "salt", 1.1);
     DataDispenser dispenser2 = new DataDispenser(2, "sugar", 1.1);
@@ -101,10 +109,36 @@ public class IndivDispenseFragment extends BaseFragment {
         indivDispenseRecycleAdapter2.setOnItemClickListenerTest(new IndivDispenseRecycleAdapter2.OnRecyclerViewItemClickListenerTest() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), "fuckkkkkkkkkkkkkkkk I started dispensing bitch ", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "fuckkkkkkkkkkkkkkkk I started dispensing bitch ", Toast.LENGTH_SHORT).show();
+                requestGet();
             }
 
         });
 
+    }
+
+    public void requestGet(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.7/salt/2/") // 设置网络请求的Url地址
+                .addConverterFactory(GsonConverterFactory.create()) // 设置数据解析器
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) // 支持RxJava平台
+                .build();
+
+        // 创建 网络请求接口 的实例
+        final GetRequestTest requestGet = retrofit.create(GetRequestTest.class);
+
+        //对 发送请求 进行封装
+        Call<Translation1> call = requestGet.getCall(trans);
+        call.enqueue(new Callback<Translation1>() {
+            @Override
+            public void onResponse(Call<Translation1> call, Response<Translation1> response) {
+                Toast.makeText(getContext(), "yeeeeeeeeeeeeeeeeeee I started dispensing bitch ", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Translation1> call, Throwable t) {
+                Toast.makeText(getContext(), "fuckkkkkkkkkkkkkkkk I faied dispensing bitch ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
