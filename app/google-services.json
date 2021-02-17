@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "517009248333",
+    "project_id": "sprinkle-5a740",
+    "storage_bucket": "sprinkle-5a740.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517009248333:android:2d7c00588057eb8f104c04",
+        "android_client_info": {
+          "package_name": "com.example.wulix.sprinkle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517009248333-q7b7tlj9p0et56mgta788n9r8cqm8sbt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wulix.sprinkle",
+            "certificate_hash": "cb812d529cf91716f16477782f8d87b49766b50e"
+          }
+        },
+        {
+          "client_id": "517009248333-o21qjjkpsrrdr0uqb3s0lbbjotbtdusk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-KHDrT4xD-VmVV_rkEimzt_E-OzmBrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517009248333-o21qjjkpsrrdr0uqb3s0lbbjotbtdusk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
