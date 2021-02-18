@@ -4,9 +4,9 @@ public class DataDispenser {
 
     private int dispenserNumber;
     private String spiceName;
-    private double teaspoonNumb;
+    private int teaspoonNumb;
 
-    public DataDispenser(int dispenserNumber, String spiceName, double teaspoonNumb) {
+    public DataDispenser(int dispenserNumber, String spiceName, int teaspoonNumb) {
         this.dispenserNumber = dispenserNumber;
         this.spiceName = spiceName;
         this.teaspoonNumb = teaspoonNumb;
@@ -42,7 +42,7 @@ public class DataDispenser {
         return String.valueOf(teaspoonNumb);
     }
 
-    public void setTeaspoonNumb(double teaspoonNumb) {
+    public void setTeaspoonNumb(int teaspoonNumb) {
         this.teaspoonNumb = teaspoonNumb;
     }
 

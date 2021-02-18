@@ -12,6 +12,7 @@ import com.example.wulix.sprinkle.module.DataDispenser;
 import com.example.wulix.sprinkle.module.Translation1;
 import com.example.wulix.sprinkle.network.api.GetRequestTest;
 import com.example.wulix.sprinkle.ui.adapter.IndivDispenseRecycleAdapter2;
+import com.example.wulix.sprinkle.ui.adapter.IndivDispenseRecycleAdapter3;
 import com.example.wulix.sprinkle.ui.base.BaseFragment;
 import com.example.wulix.sprinkle.ui.listener.IndivDispRecyclerViewListener;
 import com.example.wulix.sprinkle.ui.util.DividerItemDecoration;
@@ -38,13 +39,14 @@ public class IndivDispenseFragment extends BaseFragment {
 
     private RecyclerView.LayoutManager layoutManager;
     private IndivDispenseRecycleAdapter2 indivDispenseRecycleAdapter2;
+    private IndivDispenseRecycleAdapter3 indivDispenseRecycleAdapter3;
     String trans = null;
 
-    DataDispenser dispenser1 = new DataDispenser(1, "salt", 1.1);
-    DataDispenser dispenser2 = new DataDispenser(2, "sugar", 1.1);
-    DataDispenser dispenser3 = new DataDispenser(3, "pepper", 1.1);
-    DataDispenser dispenser4 = new DataDispenser(4, "mint", 1.1);
-    DataDispenser dispenser5 = new DataDispenser(5, "garlic", 1.1);
+    DataDispenser dispenser1 = new DataDispenser(1, "salt", 12);
+    DataDispenser dispenser2 = new DataDispenser(2, "sugar", 22);
+    DataDispenser dispenser3 = new DataDispenser(3, "pepper", 3);
+    DataDispenser dispenser4 = new DataDispenser(4, "mint", 6);
+    DataDispenser dispenser5 = new DataDispenser(5, "garlic", 4);
 
 
 
@@ -112,8 +114,26 @@ public class IndivDispenseFragment extends BaseFragment {
                 Toast.makeText(getContext(), "On Item Click I started dispensing bitch ", Toast.LENGTH_SHORT).show();
                 requestGet();
             }
-
         });
+
+        indivDispenseRecycleAdapter3 = new IndivDispenseRecycleAdapter3(dataDispensers);
+        dispRecyView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        dispRecyView.setAdapter(indivDispenseRecycleAdapter3);
+        indivDispenseRecycleAdapter3.setOnItemClickListenerTest(new IndivDispenseRecycleAdapter3.OnRecyclerViewItemClickListenerTest() {
+            @Override
+            public void onDispClick(View view, int position) {
+                Toast.makeText(getContext(), dataDispensers.get(position).getTeaspoonNumbString(), Toast.LENGTH_SHORT).show();
+                requestGet();
+            }
+
+            @Override
+            public void onEditClick(View view, int position) {
+                Toast.makeText(getContext(), "edit button", Toast.LENGTH_SHORT).show();
+                requestGet();
+            }
+        });
+
+
 
     }
 
